@@ -94,3 +94,4 @@ Validation is applied globally. Unknown properties are rejected, query-string nu
 - Add request tracing, metrics, structured logging, and production health checks.
 - Add CI for linting, tests, migrations, and container builds.
 - Add rate limiting and more targeted cache invalidation if search volume justifies the added complexity.
+- Support an `Idempotency-Key` header for listing creation so safely retried requests do not create duplicate listings.
