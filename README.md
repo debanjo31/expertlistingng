@@ -88,10 +88,11 @@ Validation is applied globally. Unknown properties are rejected, query-string nu
 ## What I would improve with more time
 
 - Add authentication and authorization so agents can manage only their own listings.
-- Model agents as a separate resource with a foreign-key relationship.
-- Add listing photos, amenities, availability, and currency-aware pricing.
+- Add currency, amenities, descriptions, photos, availability dates, and a real agents table with a foreign-key relationship.
 - Use cursor pagination for large result sets and add search-ranking options.
-- Add request tracing, metrics, structured logging, and production health checks.
-- Add CI for linting, tests, migrations, and container builds.
-- Add rate limiting and more targeted cache invalidation if search volume justifies the added complexity.
+- Add more edge-case tests for invalid price ranges, radius limits, pagination boundaries, Redis outages, empty PATCH bodies, and malformed UUIDs.
 - Support an `Idempotency-Key` header for listing creation so safely retried requests do not create duplicate listings.
+- Add rate limiting, request IDs, structured logging, secure configuration validation, and CORS configuration.
+- Add metrics and production health checks.
+- Add CI for linting, tests, migrations, and container builds.
+- Add more targeted cache invalidation if search volume justifies the added complexity.

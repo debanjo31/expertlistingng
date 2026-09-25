@@ -1,11 +1,10 @@
 node_modules/
 dist/
 coverage/
-.env
-.env.*
 !.env.example
 !.env.test
 npm-debug.log*
 .npmrc
 package-lock.backup-*.json
 .DS_Store
+config.bat
