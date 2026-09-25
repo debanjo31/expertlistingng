@@ -1,0 +1,59 @@
+@baseUrl = http://localhost:3000/api/v1
+@agentId = 8c6f6819-7ff2-4b59-bebf-60ee8b3fcf9b
+
+### Create a listing
+# @name createListing
+POST {{baseUrl}}/listings
+Content-Type: application/json
+
+{
+  "title": "Two bedroom apartment in Ikoyi",
+  "price": 5000000,
+  "type": "rent",
+  "bedrooms": 2,
+  "location": {
+    "lat": 6.4541,
+    "lng": 3.4241
+  },
+  "agentId": "{{agentId}}"
+}
+
+### List listings
+GET {{baseUrl}}/listings?page=1&limit=20
+
+### Get the listing created above
+GET {{baseUrl}}/listings/{{createListing.response.body.$.id}}
+
+### Update the listing created above
+PATCH {{baseUrl}}/listings/{{createListing.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "price": 5500000
+}
+
+### Search near central Lagos
+GET {{baseUrl}}/listings/search?latitude=6.5244&longitude=3.3792&radiusKm=15&type=rent&minPrice=1000000&maxPrice=10000000&bedrooms=2&page=1&limit=20
+
+### Search all listing types near central Lagos
+GET {{baseUrl}}/listings/search?latitude=6.5244&longitude=3.3792&radiusKm=25
+
+### Validation example: invalid listing type and unknown field
+POST {{baseUrl}}/listings
+Content-Type: application/json
+
+{
+  "title": "Invalid listing",
+  "price": 5000000,
+  "type": "lease",
+  "bedrooms": 2,
+  "location": {
+    "lat": 6.4541,
+    "lng": 3.4241
+  },
+  "agentId": "{{agentId}}",
+  "unexpected": true
+}
+
+### Delete the listing created above
+DELETE {{baseUrl}}/listings/{{createListing.response.body.$.id}}
